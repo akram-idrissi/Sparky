@@ -12,7 +12,7 @@ class Game:
 
         self.actors = set()
 
-    def processInput(self):
+    def process_input(self):
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
@@ -32,15 +32,15 @@ class Game:
             actor.draw()
         self.window.update()
 
-    def addActor(self, actor):
+    def add_actor(self, actor):
         self.actors.add(actor)
 
-    def removeActor(self, actor):
+    def remove_actor(self, actor):
         len(self.actors) > 0 if self.actors.remove(actor) else ''
 
     # setters getters
-    def isRunning(self):
+    def is_running(self):
         return self.running
 
-    def setRunning(self, value):
+    def set_running(self, value):
         self.running = value
