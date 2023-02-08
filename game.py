@@ -10,6 +10,8 @@ class Game:
         self.running = True
         self.window = Window()
 
+        self.actors = set()
+
     def processInput(self):
         events = pygame.event.get()
         for event in events:
@@ -29,7 +31,14 @@ class Game:
         for actor in self.actors:
             actor.draw()
         self.window.update()
-        
+
+    def addActor(self, actor):
+        self.actors.add(actor)
+
+    def removeActor(self, actor):
+        len(self.actors) > 0 if self.actors.remove(actor) else ''
+
+    # setters getters
     def isRunning(self):
         return self.running
 
