@@ -1,6 +1,7 @@
 import pygame
-from sys import exit
 
+from sys import exit
+from settings import *
 
 class Window:
     def __init__(self):
@@ -8,7 +9,7 @@ class Window:
         self.icon = ''
         self.caption = ''
         self.clock = pygame.time.Clock()
-        self.screen = pygame.display.set_mode((800, 400))
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     def set_caption(self, caption):
         self.caption = caption
@@ -18,10 +19,10 @@ class Window:
 
     def update(self):
         pygame.display.update()
-        self.clock.tick(60)
+        self.clock.tick(FPS)
 
     def fill(self):
-        self.screen.fill((0, 255, 0))   
+        self.screen.fill(GREEN)   
 
     def close():
         pygame.quit()
