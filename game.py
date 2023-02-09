@@ -36,7 +36,7 @@ class Game:
         self.actors.add(actor)
 
     def remove_actor(self, actor):
-        len(self.actors) > 0 if self.actors.remove(actor) else ''
+        self.actors.remove(actor) if len(self.actors) > 0  else ''
 
     # setters getters
     def is_running(self):
