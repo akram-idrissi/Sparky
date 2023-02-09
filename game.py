@@ -4,12 +4,10 @@ from window import Window
 from gameObjects import load
 
 class Game:
-    def __init__(self):
+    def __init__(self, window):
         load()
-        self.actors = []
         self.running = True
-        self.window = Window()
-
+        self.window = window
         self.actors = set()
 
     def process_input(self):
