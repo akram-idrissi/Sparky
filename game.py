@@ -1,11 +1,8 @@
 import pygame
 
-from window import Window
-from gameObjects import load
 
 class Game:
     def __init__(self, window):
-        load()
         self.running = True
         self.window = window
         self.actors = set()
