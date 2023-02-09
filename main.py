@@ -1,7 +1,7 @@
-from game import game
+from game import engine
 
 
-while game.is_running():
-    game.process_input()
-    game.update()
-    game.draw()
+while engine.is_running():
+    engine.process_input()
+    engine.update()
+    engine.draw()
