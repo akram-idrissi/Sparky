@@ -20,5 +20,5 @@ class Actor:
     def update_actor(self):
         pass
     
-    def process_input(self):
+    def process_input(self, events):
         pass

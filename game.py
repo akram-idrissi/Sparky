@@ -26,8 +26,6 @@ class Game:
 
     def draw(self):
         self.window.fill()
-        for actor in self.actors:
-            actor.draw()
         self.window.update()
 
     def add_actor(self, actor):
