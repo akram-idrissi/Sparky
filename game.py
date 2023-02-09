@@ -4,7 +4,7 @@ from window import Window
 
 
 window = Window()
-window.set_icon('icon.png')
+window.set_icon('assets/icon.png')
 window.set_caption('Game Engine using pygame')
 
 engine = Engine(window)
