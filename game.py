@@ -1,4 +1,4 @@
-from actor import Actor
+from actors.actor import Actor
 from engine import Engine
 from window import Window
 
