@@ -1,6 +1,5 @@
-from game import Game
+from game import game
 
-game = Game()
 
 while game.is_running():
     game.process_input()

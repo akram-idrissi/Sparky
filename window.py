@@ -13,9 +13,11 @@ class Window:
 
     def set_caption(self, caption):
         self.caption = caption
+        pygame.display.set_caption(caption)
     
     def set_icon(self, icon):
-        self.icon = icon
+        self.icon = pygame.image.load(icon)
+        pygame.display.set_icon(self.icon)
 
     def update(self):
         pygame.display.update()
