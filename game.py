@@ -20,7 +20,7 @@ class Game:
                 exit()
             
         for actor in self.actors:
-            actor.processInput(events)
+            actor.process_input(events)
 
     def update(self):
         for actor in self.actors:
