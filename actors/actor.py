@@ -3,14 +3,13 @@ import pygame
 class Actor:
     
     def __init__(self, engine):
+        self.components = set()
         self.engine = engine
         self.engine.add_actor(self)
-
+        self.acceleration = pygame.math.Vector2()
         self.position = pygame.math.Vector2()
         self.velocity = pygame.math.Vector2()
-        self.acceleration = pygame.math.Vector2()
-
-        self.components = set()
+        self.window = self.engine.get_window()
 
     def add_component(self, component):
         self.components.add(component)
