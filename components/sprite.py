@@ -14,6 +14,7 @@ class Sprite(Component):
     def load_img(self, img):
         self.image = pygame.image.load(img)
         self.rect = self.image.get_rect(topleft=self.actor.get_position())
+        return self.image
 
     def update(self):
         self.rect.topleft = self.actor.get_position()
