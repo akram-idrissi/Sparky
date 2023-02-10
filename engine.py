@@ -44,3 +44,7 @@ class Engine:
 
     def set_running(self, value):
         self.running = value
+
+    def get_window(self):
+        return self.window
+        
