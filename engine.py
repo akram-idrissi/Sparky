@@ -5,6 +5,8 @@ class Engine:
     def __init__(self, window):
         self.running = True
         self.window = window
+        
+        self.sprites = []
         self.actors = set()
 
     def process_input(self):
@@ -23,6 +25,8 @@ class Engine:
 
     def draw(self):
         self.window.fill()
+        for sprite in self.sprites:
+            sprite.draw()
         self.window.update()
 
     def add_actor(self, actor):
@@ -30,6 +34,9 @@ class Engine:
 
     def remove_actor(self, actor):
         self.actors.remove(actor) if len(self.actors) > 0  else ''
+
+    def add_sprite(self, sprite):
+        self.sprites.append(sprite)
 
     # setters getters
     def is_running(self):
