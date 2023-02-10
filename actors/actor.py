@@ -2,9 +2,9 @@ import pygame
 
 class Actor:
     
-    def __init__(self, game):
-        self.game = game
-        self.game.add_actor(self)
+    def __init__(self, engine):
+        self.engine = engine
+        self.engine.add_actor(self)
 
         self.position = pygame.math.Vector2()
         self.velocity = pygame.math.Vector2()
@@ -31,7 +31,7 @@ class Actor:
 
     # getters setters
     def get_engine(self):
-        return self.game
+        return self.engine
 
     def get_position(self):
         return self.position
