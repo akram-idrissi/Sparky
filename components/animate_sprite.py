@@ -1,6 +1,15 @@
 from .sprite import Sprite
 
 class AnimateSprite(Sprite):
+    """
+    Sprite subclass responsible for rendering animations.
+
+    Attributes:
+        animations: a dict that stores multiple animations.
+        current_animation: keeps track of the current animation we're on.
+        frames: has frames of a specific animation.
+        index: keeps track of which animation should be drawn.
+    """
     def __init__(self, actor):
         super().__init__(actor)
 
