@@ -5,6 +5,10 @@ class Actor:
     This is a base Actor class with a handful of overridable methods, each actor also has
     a set of components.
 
+    Derived classes will want to override the Actor.update_actor() 
+    and Actor.process_input(). The initializer can accept an Actor().
+    When subclassing the Actor class, be sure to call the base initializer.
+
     Attributes:
         components: a set that contains unique components objects.
         engine: a reference to the engine object.
