@@ -1,6 +1,6 @@
 from .sprite import Sprite
 
-class AnimateSprite(Sprite):
+class AnimSprite(Sprite):
     """
     Sprite subclass responsible for rendering animations.
 
