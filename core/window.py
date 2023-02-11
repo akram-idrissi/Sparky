@@ -1,7 +1,7 @@
 import pygame
 
 from sys import exit
-from .settings import *
+from .settings import FPS, SCREEN_COLOR, WIDTH, HEIGHT
 
 class Window:
     def __init__(self):
@@ -24,9 +24,9 @@ class Window:
         self.clock.tick(FPS)
 
     def fill(self):
-        self.screen.fill(GREEN)   
+        self.screen.fill(SCREEN_COLOR)   
 
-    def close():
+    def close(self):
         pygame.quit()
         exit()
 
