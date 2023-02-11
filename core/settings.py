@@ -4,13 +4,6 @@ HEIGHT = 400
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 
-# colors
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
-WHITE = (255, 255, 255)
-
 Black = (0, 0, 0)
 NavyBlue = Navy = (0, 0, 128)
 DarkBlue = (0, 0, 139)
@@ -151,5 +144,9 @@ Yellow = (255, 255, 0)
 LightYellow = (255, 255, 224)
 Ivory = (255, 255, 240)
 White = (255, 255, 255)
+
+# screen
+SCREEN_COLOR = LightGrey
+
 # fps
 FPS = 60
