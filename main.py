@@ -1,4 +1,4 @@
-from game import engine
+from core.game import engine
 
 
 while engine.is_running():

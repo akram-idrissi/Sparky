@@ -1,5 +1,5 @@
 import pygame
-from components.component import Component
+from .component import Component
 
 class Sprite(Component):
     """
@@ -7,7 +7,7 @@ class Sprite(Component):
 
     This class is responsible for rendering and updating all 
     engine graphics. It renders a single sprite per instance, 
-    for an animated image check AnimateSprite()
+    for an animated image check AnimSprite()
 
     Derived classes can override the Sprite.update() and Sprite.draw() 
     and assign Sprite.image and Sprite.rect attributes. 
