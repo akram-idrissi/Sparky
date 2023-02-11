@@ -1,7 +1,7 @@
 import pygame
 
 from sys import exit
-from settings import *
+from .settings import *
 
 class Window:
     def __init__(self):
