@@ -29,7 +29,7 @@ class Sprite(Component):
         self.screen = self.window.get_screen()
 
     def load_img(self, img):
-        self.image = pygame.image.load(img)
+        self.image = pygame.image.load(img).convert_alpha()
         self.rect = self.image.get_rect(topleft=self.actor.get_position())
         return self.image
 
@@ -37,6 +37,7 @@ class Sprite(Component):
         self.rect.topleft = self.actor.get_position()
 
     def draw(self):
+        if not self.image: return
         self.screen.blit(self.image, (self.actor.get_position()))
 
     # getters setters
