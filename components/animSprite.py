@@ -19,6 +19,7 @@ class AnimSprite(Sprite):
         self.index = 0
 
     def update(self):
+        if not self.current_animation: return 
         self.frames = self.animations[self.current_animation]
         self.index %= len(self.frames)
         self.image = self.frames[int(self.index)]
@@ -57,3 +58,32 @@ class AnimSprite(Sprite):
         if(name and name in self.animations.keys):
             self.animations[name] = frames
             self.current_animation = name
+
+
+class SingleImgAnimation(Sprite):
+    def __init__(self, actor, columns, rows=1):
+        super().__init__(actor)
+
+        self.index = 0
+        self.frame = {}
+        self.frames = []
+        self.rows = rows
+        self.columns = columns
+
+    def load_frames(self):
+        frame_height = self.rect.h // self.rows
+        frame_width = self.rect.w // self.columns
+
+        for row in range(self.rows):
+            for column in range(self.columns):
+                self.frames.append([frame_width * column, frame_height * row, frame_width, frame_height])
+
+    def update(self):
+        length = len(self.frames)
+        self.index = self.index % length
+        self.frame = self.frames[int(self.index)]
+        self.index += 0.1
+        
+    def draw(self):
+        if not self.image or not self.frame: return 
+        self.screen.blit(self.image, self.actor.get_position(), (self.frame[0], self.frame[1], self.frame[2], self.frame[3]))
