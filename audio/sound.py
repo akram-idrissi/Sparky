@@ -1,11 +1,12 @@
 import pygame
-
+from random import choice
 
 class Sound():
     def __init__(self):
         pygame.mixer.pre_init(44100, -16, 2, 512)
         self.sounds = {}
         self.current_sound = None
+        self.current_sound_on = None
         
     def load_sound(self, path):
         return pygame.mixer.Sound(path) if path else None
@@ -20,13 +21,14 @@ class Sound():
             self.sounds[name] += [self.load_sound(sound) for sound in sounds]
 
     def play(self):
-        self.sounds[self.current_sound].play()
+        self.current_sound_on = choice(self.sounds[self.current_sound])
+        self.current_sound_on.play()
 
     def stop(self):
-        self.sounds[self.current_sound].stop()
+        self.current_sound_on.stop()
 
     def fade_out(self   , time):
-        self.sounds[self.current_sound].fade_out(time)
+        self.current_sound_on.fade_out(time)
 
     def close(self):
         pygame.mixer.quit()
@@ -36,7 +38,7 @@ class Sound():
         if name in self.sounds.keys and len(sounds) > 0:
             self.sounds[name] = [self.load_sound(sound) for sound in sounds]
     
-    def get_sound(self, name):
+    def get_sounds(self, name):
         self.sounds[name] if name in self.sounds.keys else None
 
     def set_current_sound(self, name):
@@ -52,4 +54,4 @@ class Sound():
         pygame.mixer.get_num_channels()
 
     def set_volume(self, num):
-        self.sounds[self.current_sound].set_volume(num)
+        self.current_sound_on.set_volume(num)
