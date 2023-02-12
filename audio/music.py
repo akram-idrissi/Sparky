@@ -21,7 +21,7 @@ class Music():
         pygame.mixer.music.stop()
 
     def fade_out(self   , time):
-        pygame.mixer.music.fade_out(time)
+        pygame.mixer.music.fadeout(time)
 
     def close(self):
         pygame.mixer.quit()
