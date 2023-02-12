@@ -1,6 +1,6 @@
 from .actor import Actor
 from components.input import Input
-from components.animSprite import AnimSprite
+from components.animSprite import SingleImgAnimation
 
 
 class Player(Actor):
@@ -13,11 +13,12 @@ class Player(Actor):
 
     def load(self):
         self.input = Input(self)
-        self.animation = AnimSprite(self)
-        self.animation.add_animation("run", [
-            self.animation.load_img('assets/dino/run1.png'),
-            self.animation.load_img('assets/dino/run2.png'),
-        ])
+        self.animation = SingleImgAnimation(self, 8)
+        self.animation.load_img('assets/attack.png')
+        self.animation.load_frames()
+
+    def process_input(self, events):
+        pass
 
     def update_actor(self):
         pass
