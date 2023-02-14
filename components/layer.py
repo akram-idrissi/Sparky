@@ -16,22 +16,6 @@ def parse_file(filename):
     return data
     
 
-def load_tiles(data, width, height, tilesize):
-    tiles = []
-    rows = width // tilesize
-    columns = height // tilesize
-
-    for y, row in enumerate(data):
-        for x, column in enumerate(row):
-            if column != -1:
-                src_x = (column % columns) * tilesize
-                src_y = (column // columns) * tilesize
-
-                dest_x = x * tilesize
-                dest_y = y * tilesize
-                tiles.append([dest_x, dest_y, src_x, src_y])
-    return tiles
-
 class Layer(Sprite):
     def __init__(self, actor, filename, tileset, tilesize):
         super().__init__(actor)
@@ -40,12 +24,26 @@ class Layer(Sprite):
         self.tilesize = tilesize
         self.filename = filename
 
-        self.load_img(self.tileset)
         self.data = parse_file(self.filename)
-        self.tiles = load_tiles(self.data, self.rect.w, self.rect.h, self.tilesize)
+        self.tiles = self.load_tiles()
+        self.load_img(self.tileset)
+
+    def load_tiles(self):
+        columns = self.rect.w // self.tilesize
+
+        for y, row in enumerate(self.data):
+            for x, column in enumerate(row):
+                if column != -1:
+                    src_x = (column % columns) * self.tilesize
+                    src_y = (column // columns) * self.tilesize
+
+                    dest_x = x * self.tilesize
+                    dest_y = y * self.tilesize
+                    self.tiles.append([dest_x, dest_y, src_x, src_y])
 
     def update(self):
         pass
+    
 
     def draw(self):
         for tile in self.tiles:
