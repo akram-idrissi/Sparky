@@ -25,6 +25,7 @@ class Sprite(Component):
 
         self.rect = None
         self.image = None
+        self.offset = (0, 0)
         self.engine.add_sprite(self)
         self.screen = self.window.get_screen()
 
@@ -42,6 +43,9 @@ class Sprite(Component):
     def draw(self):
         if not self.image: return
         self.screen.blit(self.image, (self.actor.get_position()))
+
+    def set_offset(self, n, m):
+        self.offset = (n, m)
 
     # getters setters
     def get_rect(self):
