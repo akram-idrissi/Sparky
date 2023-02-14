@@ -48,7 +48,8 @@ class Layer(Sprite):
 
     def draw(self):
         for tile in self.tiles:
-            self.screen.blit(self.image, (tile[0], tile[1]), (tile[2], tile[3], self.tilesize, self.tilesize))
+            self.screen.blit(self.image, (tile[0] - self.offset[0], tile[1] - self.offset[1]), (tile[2], tile[3], self.tilesize, self.tilesize))
+
 
 class SingleImgLayer(Layer):
     def __init__(self, actor, filename, tileset, tilesize):
@@ -65,7 +66,7 @@ class SingleImgLayer(Layer):
 
     def draw(self):
         for tile in self.tiles:
-            self.screen.blit(self.image, (tile[0], tile[1]))
+            self.screen.blit(self.image, (tile[0] - self.offset[0], tile[1] - self.offset[1]))
 
 
 class AnimatedLayer(AnimSprite):
@@ -97,4 +98,4 @@ class AnimatedLayer(AnimSprite):
         for tile in self.tiles:
             self.current_animation = tile[0]
             self.image = self.animations[self.current_animation][int(self.index % len(self.animations[self.current_animation]))]
-            self.screen.blit(self.image, (tile[1], tile[2]))
+            self.screen.blit(self.image, (tile[1] - self.offset[0], tile[2] - self.offset[1]))
