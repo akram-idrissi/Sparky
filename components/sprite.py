@@ -33,6 +33,9 @@ class Sprite(Component):
         self.rect = self.image.get_rect(topleft=self.actor.get_position())
         return self.image
 
+    def scale(self, x, y):
+        self.image = pygame.transform.scale(self.image, (x, y))
+
     def update(self):
         self.rect.topleft = self.actor.get_position()
 
