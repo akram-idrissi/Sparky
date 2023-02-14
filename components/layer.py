@@ -20,13 +20,14 @@ class Layer(Sprite):
     def __init__(self, actor, filename, tileset, tilesize):
         super().__init__(actor)
 
+        self.tiles = []
         self.tileset = tileset
         self.tilesize = tilesize
         self.filename = filename
 
-        self.data = parse_file(self.filename)
-        self.tiles = self.load_tiles()
         self.load_img(self.tileset)
+        self.data = parse_file(self.filename)
+        self.load_tiles()
 
     def load_tiles(self):
         columns = self.rect.w // self.tilesize
@@ -48,6 +49,23 @@ class Layer(Sprite):
     def draw(self):
         for tile in self.tiles:
             self.screen.blit(self.image, (tile[0], tile[1]), (tile[2], tile[3], self.tilesize, self.tilesize))
+
+class SingleImgLayer(Layer):
+    def __init__(self, actor, filename, tileset, tilesize):
+        super().__init__(actor, filename, tileset, tilesize)
+        self.data = self.load_tiles()
+
+    def load_tiles(self):
+        for y, row in enumerate(self.data):
+            for x, column in enumerate(row):
+                if column != -1:
+                    dest_x = x * self.tilesize
+                    dest_y = y * self.tilesize
+                    self.tiles.append([dest_x, dest_y])
+
+    def draw(self):
+        for tile in self.tiles:
+            self.screen.blit(self.image, (tile[0], tile[1]))
 
 
 class AnimatedLayer(AnimSprite):
