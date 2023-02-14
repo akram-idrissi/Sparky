@@ -55,34 +55,30 @@ class Layer(Sprite):
 class AnimatedLayer(AnimSprite):
     def __init__(self, actor, filename, frames, tilesize):
         super().__init__(actor)
+        
         self.tiles = []
         self.tilesize = tilesize
-        self.images = frames
+
         self.data = parse_file(filename)
-        self.load_frames()
+        self.populate_animation(frames)
         self.load_tiles()
 
-    def load_frames(self):
-        for k in self.images.keys():
+    def populate_animation(self, animations):
+        self.animations = animations
+        for k, frames in self.animations.items():
             temp = []
-            for frame in self.images[k]:
+            for frame in frames:
                 temp.append(self.load_img(frame))
-            self.images[k] = temp
-
-        for k, v in self.images.items():
-            self.add_animation(k, v)
+            self.animations[k] = temp
 
     def load_tiles(self):
         for y, row in enumerate(self.data):
             for x, column in enumerate(row):
                 if column != -1:
                     self.tiles.append([column, x * self.tilesize, y * self.tilesize])
-        self.current_animation = self.tiles[0][0]
-    
-    def update(self):
-        super().update()
 
     def draw(self):
         for tile in self.tiles:
             self.current_animation = tile[0]
+            self.image = self.animations[self.current_animation][int(self.index % len(self.animations[self.current_animation]))]
             self.screen.blit(self.image, (tile[1], tile[2]))
