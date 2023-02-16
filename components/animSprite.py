@@ -19,6 +19,7 @@ class AnimSprite(Sprite):
         self.index = 0
 
     def update(self):
+        super().update()
         if not self.current_animation: return 
         self.frames = self.animations[self.current_animation]
         self.index %= len(self.frames)
