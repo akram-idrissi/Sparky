@@ -17,6 +17,8 @@ class Sprite(Component):
     Attributes:
         image: surface to render
         rect: an image rectangle 
+        flip_flag: a flag that allows or prevent img flipping
+        flip_axis = keeps track on which axis we should flip img  
         engine: a reference to the engine object.
         screen: a reference to the display surface.
     """
@@ -26,6 +28,8 @@ class Sprite(Component):
         self.rect = None
         self.image = None
         self.offset = (0, 0)
+        self.flip_flag = False
+        self.flip_axis = (0, 0)
         self.engine.add_sprite(self)
         self.screen = self.window.get_screen()
 
@@ -36,6 +40,10 @@ class Sprite(Component):
 
     def scale(self, x, y):
         self.image = pygame.transform.scale(self.image, (x, y))
+    
+    def flip(self, x=None, y=None):
+        if not x and not y: 
+            self.image = pygame.transform.flip(self.image, self.flip_axis[0], self.flip_axis[1])
 
     def update(self):
         self.rect.topleft = self.actor.get_position()
@@ -53,3 +61,10 @@ class Sprite(Component):
 
     def set_rect(self, x, y):
         self.rect.topleft = (x, y)
+
+    def set_flip(self, x, y, f):
+        self.flip_flag = f
+        self.flip_axis = (x, y)
+    
+    def get_flip(self):
+        return (self.flip_flag, self.flip_axis[0], self.flip_axis[1])
