@@ -40,7 +40,8 @@ class Actor:
 
     def update_actor(self):
         """ An overridable method for updating actor behavior """
-        pass
+        self.velocity += self.acceleration
+        self.position += self.velocity
     
     def process_input(self, events):
         """ 
