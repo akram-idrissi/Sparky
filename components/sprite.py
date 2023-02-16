@@ -46,6 +46,7 @@ class Sprite(Component):
             self.image = pygame.transform.flip(self.image, self.flip_axis[0], self.flip_axis[1])
 
     def update(self):
+        if not self.rect: return
         self.rect.topleft = self.actor.get_position()
 
     def draw(self):
