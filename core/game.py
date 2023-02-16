@@ -1,19 +1,30 @@
 from .engine import Engine
 from .window import Window
 from actors.map import Map
+from audio.music import Music
 from actors.player import Player
-from components.layer import Layer, AnimatedLayer
+from components.sprite import Sprite 
+from components.layer import Layer, AnimatedLayer, SingleImgLayer
 
-
+# initializing objects
 window = Window()
+engine = Engine(window)
+music = Music()
+music.load('assets/audio/music.wav')
+music.play(-1)
+
+map = Map(engine)
+background = Sprite(map)
+player = Player(engine)
+
+# setting the window
 window.set_icon('assets/icon.png')
 window.set_caption('Game Engine using pygame')
 
-engine = Engine(window)
-player = Player(engine)
-player.set_position(100, 100)
+# setting player position
+player.set_position(600, 522)
 
-map = Map(engine)
+# dictionnary for animated tiles
 frames = {
     0: 
     [
@@ -31,5 +42,49 @@ frames = {
         'assets/coins/gold/3.png'
     ]
     }
-map.add_layer('coins', AnimatedLayer(map, 'assets/layers/coins.csv', frames, 64))
-map.add_layer('terrain', Layer(map, 'assets/layers/terrain.csv', 'assets/terrain.png', 64))
+
+frames2 = {
+    2: 
+    [
+        'assets/palm_bg/bg_palm_1.png',
+        'assets/palm_bg/bg_palm_2.png',
+        'assets/palm_bg/bg_palm_3.png',
+        'assets/palm_bg/bg_palm_4.png'
+    ],
+}
+
+frames3 = {
+    0: 
+    [
+        'assets/palm_large/large_1.png',
+        'assets/palm_large/large_2.png',
+        'assets/palm_large/large_3.png',
+        'assets/palm_large/large_4.png'
+    ],
+    1: 
+    [
+        'assets/palm_small/small_1.png',
+        'assets/palm_small/small_2.png',
+        'assets/palm_small/small_3.png',
+        'assets/palm_small/small_4.png'
+    ],
+}
+
+# adding layers to the map
+bg_palms_layer = AnimatedLayer(map, 'assets/layers/bg_palms.csv', frames2, 64)
+coins_layer = AnimatedLayer(map, 'assets/layers/coins.csv', frames, 64)
+crates_layer = SingleImgLayer(map, 'assets/layers/crates.csv', 'assets/crate.png', 64)
+terrain_layer = Layer(map, 'assets/layers/terrain.csv', 'assets/terrain.png', 64)
+
+coins_layer.set_offset(-coins_layer.get_rect().w // 2, 0)
+bg_palms_layer.set_offset(0, bg_palms_layer.get_rect().h // 2)
+crates_layer.set_offset(0, -crates_layer.get_rect().h // 2)
+
+map.add_layer('terrain', terrain_layer)
+map.add_layer('palms_bg', bg_palms_layer)
+map.add_layer('coins', coins_layer)
+map.add_layer('crates', crates_layer)
+
+# loading and scaling background
+background.load_img('assets/background.png')
+background.scale(1280, 704)
