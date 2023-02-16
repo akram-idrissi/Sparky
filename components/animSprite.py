@@ -24,6 +24,7 @@ class AnimSprite(Sprite):
         self.index %= len(self.frames)
         self.image = self.frames[int(self.index)]
         self.index += 0.1
+        if self.flip_flag: self.flip()
 
     def add_frames(self, name, frames):
         """ Adds more frames to an animation """
