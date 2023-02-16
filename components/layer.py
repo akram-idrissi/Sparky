@@ -1,4 +1,4 @@
-import csv
+import csv, pygame
 
 from .sprite import Sprite
 from .animSprite import AnimSprite
@@ -21,6 +21,7 @@ class Layer(Sprite):
         super().__init__(actor)
 
         self.tiles = []
+        self.tile_rects = []
         self.tileset = tileset
         self.tilesize = tilesize
         self.filename = filename
@@ -47,8 +48,11 @@ class Layer(Sprite):
     
 
     def draw(self):
+        self.tile_rects = []
         for tile in self.tiles:
-            self.screen.blit(self.image, (tile[0] - self.offset[0], tile[1] - self.offset[1]), (tile[2], tile[3], self.tilesize, self.tilesize))
+            rect = pygame.Rect(tile[0] - self.offset[0], tile[1] - self.offset[1], self.tilesize, self.tilesize)
+            self.tile_rects.append(rect) 
+            self.screen.blit(self.image, (rect.x, rect.y), (tile[2], tile[3], self.tilesize, self.tilesize))
 
 
 class SingleImgLayer(Layer):
@@ -74,6 +78,7 @@ class AnimatedLayer(AnimSprite):
         super().__init__(actor)
         
         self.tiles = []
+        self.tile_rects = []
         self.tilesize = tilesize
 
         self.data = parse_file(filename)
@@ -95,7 +100,12 @@ class AnimatedLayer(AnimSprite):
                     self.tiles.append([column, x * self.tilesize, y * self.tilesize])
 
     def draw(self):
+        self.tile_rects = []
         for tile in self.tiles:
             self.current_animation = tile[0]
             self.image = self.animations[self.current_animation][int(self.index % len(self.animations[self.current_animation]))]
-            self.screen.blit(self.image, (tile[1] - self.offset[0], tile[2] - self.offset[1]))
+            
+            rect = pygame.Rect(tile[1] - self.offset[0], tile[2] - self.offset[1], self.tilesize, self.tilesize)
+            self.tile_rects.append(rect) 
+            
+            self.screen.blit(self.image, (rect.x, rect.y))
