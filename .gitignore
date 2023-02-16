@@ -153,5 +153,3 @@ font/*
 sound/*
 assets/*
 graphics/*
-
-core/game.py
