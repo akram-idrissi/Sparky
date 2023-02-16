@@ -6,6 +6,7 @@ class Engine:
         self.running = True
         self.window = window
         
+        self.layers = {}
         self.sprites = []
         self.actors = set()
 
@@ -30,6 +31,9 @@ class Engine:
         for sprite in self.sprites:
             sprite.draw()
         self.window.update()
+
+    def add_layer(self, name, layer):
+        if name not in self.layers.keys() : self.layers[name] = layer
 
     def add_actor(self, actor):
         self.actors.add(actor)

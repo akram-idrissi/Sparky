@@ -1,15 +1,11 @@
-import csv
-
 from .actor import Actor
 
 class Map(Actor):
     def __init__(self, actor):
         super().__init__(actor)
 
-        self.layers = {}
-
     def add_layer(self, name, layer):
-        if name not in self.layers.keys() : self.layers[name] = layer
+        self.get_engine().add_layer(name, layer)
 
     def add_animated_layer(self):
         pass
