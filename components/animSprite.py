@@ -65,4 +65,4 @@ class SingleImgAnimation(Sprite):
         
     def draw(self):
         if not self.image or not self.frame: return 
-        self.screen.blit(self.image, self.actor.get_position(), (self.frame[0], self.frame[1], self.frame[2], self.frame[3]))
+        self.screen.blit(self.image, self.actor.position, (self.frame[0], self.frame[1], self.frame[2], self.frame[3]))

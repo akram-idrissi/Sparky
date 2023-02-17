@@ -22,7 +22,7 @@ window.set_icon('assets/icon.png')
 window.set_caption('Game Engine using pygame')
 
 # setting player position
-player.set_position(600, 522)
+player.position = (600, 522)
 
 # dictionnary for animated tiles
 frames = {
@@ -76,9 +76,9 @@ coins_layer = AnimatedLayer(map, 'assets/layers/coins.csv', frames, 64)
 crates_layer = SingleImgLayer(map, 'assets/layers/crates.csv', 'assets/crate.png', 64)
 terrain_layer = Layer(map, 'assets/layers/terrain.csv', 'assets/terrain.png', 64)
 
-coins_layer.set_offset(-coins_layer.get_rect().w // 2, 0)
-bg_palms_layer.set_offset(0, bg_palms_layer.get_rect().h // 2)
-crates_layer.set_offset(0, -crates_layer.get_rect().h // 2)
+coins_layer.offset = (-coins_layer.rect.w // 2, 0)
+bg_palms_layer.offset = (0, bg_palms_layer.rect.h // 2)
+crates_layer.offset = (0, -crates_layer.rect.h // 2)
 
 map.add_layer('terrain', terrain_layer)
 map.add_layer('palms_bg', bg_palms_layer)

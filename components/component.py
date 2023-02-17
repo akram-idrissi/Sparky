@@ -17,7 +17,7 @@ class Component:
         self.actor = actor
         self.actor.add_component(self)
         
-        self.engine = self.actor.get_engine()
+        self.engine = self.actor.engine
         self.window = self.actor.window
 
     def update(self):

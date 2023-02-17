@@ -24,7 +24,7 @@ class Actor:
         self.acceleration = pygame.math.Vector2()
         self.position = pygame.math.Vector2()
         self.velocity = pygame.math.Vector2()
-        self.window = self.engine.get_window()
+        self.window = self.engine.window
 
     def add_component(self, component):
         self.components.add(component)

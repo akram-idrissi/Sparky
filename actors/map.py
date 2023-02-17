@@ -5,7 +5,7 @@ class Map(Actor):
         super().__init__(actor)
 
     def add_layer(self, name, layer):
-        self.get_engine().add_layer(name, layer)
+        self.engine.add_layer(name, layer)
 
     def add_animated_layer(self):
         pass

@@ -31,11 +31,11 @@ class Sprite(Component):
         self.flip_flag = False
         self.flip_axis = (0, 0)
         self.engine.add_sprite(self)
-        self.screen = self.window.get_screen()
+        self.screen = self.window.screen
 
     def load_img(self, img):
         self.image = pygame.image.load(img).convert_alpha()
-        self.rect = self.image.get_rect(topleft=self.actor.get_position())
+        self.rect = self.image.get_rect(topleft=self.actor.position)
         return self.image
 
     def scale(self, x, y):
@@ -47,8 +47,8 @@ class Sprite(Component):
 
     def update(self):
         if not self.rect: return
-        self.rect.topleft = self.actor.get_position()
+        self.rect.topleft = self.actor.position
 
     def draw(self):
         if not self.image: return
-        self.screen.blit(self.image, (self.actor.get_position()))
+        self.screen.blit(self.image, (self.actor.position))
