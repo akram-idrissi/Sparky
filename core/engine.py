@@ -43,14 +43,3 @@ class Engine:
 
     def add_sprite(self, sprite):
         self.sprites.append(sprite)
-
-    # setters getters
-    def is_running(self):
-        return self.running
-
-    def set_running(self, value):
-        self.running = value
-
-    def get_window(self):
-        return self.window
-        

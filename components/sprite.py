@@ -52,20 +52,3 @@ class Sprite(Component):
     def draw(self):
         if not self.image: return
         self.screen.blit(self.image, (self.actor.get_position()))
-
-    def set_offset(self, n, m):
-        self.offset = (n, m)
-
-    # getters setters
-    def get_rect(self):
-        return self.rect
-
-    def set_rect(self, x, y):
-        self.rect.topleft = (x, y)
-
-    def set_flip(self, x, y, f):
-        self.flip_flag = f
-        self.flip_axis = (x, y)
-    
-    def get_flip(self):
-        return (self.flip_flag, self.flip_axis[0], self.flip_axis[1])

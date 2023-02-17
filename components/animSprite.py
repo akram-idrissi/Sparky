@@ -29,35 +29,12 @@ class AnimSprite(Sprite):
 
     def add_frames(self, name, frames):
         """ Adds more frames to an animation """
-        if(name and len(frames) > 0):
+        if(name and len(frames) > 0 and name in self.animations.keys()):
             self.animations[name] += frames
  
     def add_animation(self, name, frames):
         """ Adds a new animation """
-        if(name and len(frames) > 0):
-            self.animations[name] = frames
-            self.current_animation = name
-
-    # getters setters
-    def set_animation(self, name):
-        """ Updates the current animation """
-        if(name): self.current_animation = name 
-
-    def get_animation(self, name):
-        """ Returns the current animation """
-        if name:
-            return self.current_animation
-        return None
-
-    def get_frames(self, name):
-        """ Gets frames of a specific animation """
-        if name and name in self.animations.keys:
-            return self.animations[name]
-        return None
-
-    def set_frames(self, name, frames):
-        """ Sets frames of a specific animation """
-        if(name and name in self.animations.keys):
+        if(name and len(frames) > 0 and name not in self.animations.keys()):
             self.animations[name] = frames
             self.current_animation = name
 

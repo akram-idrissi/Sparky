@@ -50,26 +50,3 @@ class Actor:
             events: list of events triggered.
         """
         pass
-
-    # getters setters
-    def get_engine(self):
-        return self.engine
-
-    def get_position(self):
-        return self.position
-    
-    def set_position(self, x, y):
-        self.position.x = x; self.position.y = y
-    
-    def get_velocity(self):
-        return self.velocity
-    
-    def set_velocity(self, x, y):
-        self.velocity.x = x; self.velocity.y = y
-    
-    def get_acceleration(self):
-        return self.velocity
-    
-    def set_acceleration(self, x, y):
-        self.acceleration.x = x; self.acceleration.y = y
-    

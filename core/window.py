@@ -29,8 +29,3 @@ class Window:
     def close(self):
         pygame.quit()
         exit()
-
-    # getters setters
-    def get_screen(self):
-        return self.screen
-        
