@@ -58,6 +58,7 @@ class SingleImgAnimation(Sprite):
                 self.frames.append([frame_width * column, frame_height * row, frame_width, frame_height])
 
     def update(self):
+        super().update()
         length = len(self.frames)
         self.index = self.index % length
         self.frame = self.frames[int(self.index)]
