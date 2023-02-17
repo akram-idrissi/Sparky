@@ -21,7 +21,7 @@ class Layer(Sprite):
         super().__init__(actor)
 
         self.tiles = []
-        self.tile_rects = []
+        self.rects = []
         self.tileset = tileset
         self.tilesize = tilesize
         self.filename = filename
@@ -48,10 +48,10 @@ class Layer(Sprite):
     
 
     def draw(self):
-        self.tile_rects = []
+        self.rects = []
         for tile in self.tiles:
             rect = pygame.Rect(tile[0] - self.offset[0], tile[1] - self.offset[1], self.tilesize, self.tilesize)
-            self.tile_rects.append(rect) 
+            self.rects.append(rect) 
             self.screen.blit(self.image, (rect.x, rect.y), (tile[2], tile[3], self.tilesize, self.tilesize))
 
 
@@ -78,7 +78,7 @@ class AnimatedLayer(AnimSprite):
         super().__init__(actor)
         
         self.tiles = []
-        self.tile_rects = []
+        self.rects = []
         self.tilesize = tilesize
 
         self.data = parse_file(filename)
@@ -100,12 +100,12 @@ class AnimatedLayer(AnimSprite):
                     self.tiles.append([column, x * self.tilesize, y * self.tilesize])
 
     def draw(self):
-        self.tile_rects = []
+        self.rects = []
         for tile in self.tiles:
             self.current_animation = tile[0]
             self.image = self.animations[self.current_animation][int(self.index % len(self.animations[self.current_animation]))]
             
             rect = pygame.Rect(tile[1] - self.offset[0], tile[2] - self.offset[1], self.tilesize, self.tilesize)
-            self.tile_rects.append(rect) 
+            self.rects.append(rect) 
             
             self.screen.blit(self.image, (rect.x, rect.y))
