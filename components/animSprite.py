@@ -62,6 +62,7 @@ class SingleImgAnimation(Sprite):
         length = len(self.frames)
         self.index = self.index % length
         self.frame = self.frames[int(self.index)]
+        self.rect.w = self.frame[2]; self.rect.h = self.frame[3]
         self.index += 0.1
         
     def draw(self):
