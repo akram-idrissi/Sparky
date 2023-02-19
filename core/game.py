@@ -2,6 +2,7 @@ from .engine import Engine
 from .window import Window
 from actors.map import Map
 from audio.music import Music
+from actors.actor import Actor
 from actors.player import Player
 from components.sprite import Sprite 
 from components.layer import Layer, AnimatedLayer, SingleImgLayer
@@ -13,18 +14,17 @@ music = Music()
 music.load('assets/audio/music.wav')
 music.play(-1)
 
-map = Map(engine)
-background = Sprite(map)
-player = Player(engine)
-
 # setting the window
 window.set_icon('assets/icon.png')
 window.set_caption('Game Engine using pygame')
 
-# setting player position
-player.position = (600, 522)
+# background
+actor = Actor(engine)
+background = Sprite(actor)
+background.load_img('assets/background.png')
+background.scale(1280, 704)
 
-# dictionnary for animated tiles
+# animated tiles data
 frames = {
     0: 
     [
@@ -70,7 +70,8 @@ frames3 = {
     ],
 }
 
-# adding layers to the map
+# creating map and layers
+map = Map(engine)
 bg_palms_layer = AnimatedLayer(map, 'assets/layers/bg_palms.csv', frames2, 64)
 coins_layer = AnimatedLayer(map, 'assets/layers/coins.csv', frames, 64)
 crates_layer = SingleImgLayer(map, 'assets/layers/crates.csv', 'assets/crate.png', 64)
@@ -85,6 +86,6 @@ map.add_layer('palms_bg', bg_palms_layer)
 map.add_layer('coins', coins_layer)
 map.add_layer('crates', crates_layer)
 
-# loading and scaling background
-background.load_img('assets/background.png')
-background.scale(1280, 704)
+# creating the player
+player = Player(engine)
+player.position.xy = 600, 520
