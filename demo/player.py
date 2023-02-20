@@ -1,4 +1,4 @@
-from .actor import Actor
+from ..actors.actor import Actor
 from components.input import Input
 from components.sprite import Sprite
 from core.collision import * 
