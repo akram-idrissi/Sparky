@@ -3,7 +3,7 @@ from .window import Window
 from actors.map import Map
 from audio.music import Music
 from actors.actor import Actor
-from actors.player import Player
+from demo.player import Player
 from components.sprite import Sprite 
 from components.layer import Layer, AnimatedLayer, SingleImgLayer
 
