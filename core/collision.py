@@ -20,7 +20,7 @@ def collidedtiles(rect, tiles):
     return [tile for tile in tiles if tile.colliderect(rect)]
 
 
-def vertical_movement(rect, velocity, tiles):
+def horizontal_movement(rect, velocity, tiles):
     collisions = {'right': False, 'left': False}
 
     for tile in tiles:
@@ -34,15 +34,15 @@ def vertical_movement(rect, velocity, tiles):
     return rect, collisions
 
 
-def horizontal_movement(rect, velocity, tiles):
+def vertical_movement(rect, velocity, tiles):
     collisions = {'top': False, 'bottom': False}
 
     for tile in tiles:
         if velocity.y > 0:
             rect.bottom = tile.top
-            collisions['right'] = True
+            collisions['bottom'] = True
         elif velocity.y < 0:
             rect.top = tile.bottom
-            collisions['left'] = True
+            collisions['top'] = True
     
     return rect, collisions
