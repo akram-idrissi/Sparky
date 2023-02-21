@@ -53,6 +53,7 @@ class Player(Actor):
         self.position.y = pos.y
 
     def update_actor(self): 
+        self.engine.scroll[0] += (self.velocity.x - self.engine.scroll[0])
         super().update_actor()
         self.acceleration.y += 0.2
         if self.acceleration.y > 3: self.acceleration.y = 3 
