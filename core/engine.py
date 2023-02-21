@@ -9,6 +9,7 @@ class Engine:
         self.layers = {}
         self.sprites = []
         self.actors = set()
+        self.scroll = [0, 0]
 
     def process_input(self):
         events = pygame.event.get()
