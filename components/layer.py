@@ -41,18 +41,18 @@ class Layer(Sprite):
 
                     dest_x = x * self.tilesize
                     dest_y = y * self.tilesize
-                    self.tiles.append([dest_x, dest_y, src_x, src_y])
+                    self.tiles.append([src_x, src_y])
+                    self.rects.append(pygame.Rect(dest_x, dest_y, self.tilesize, self.tilesize))
 
     def update(self):
-        pass
-    
+        super().update()
+        for rect in self.rects:
+            rect.x += - self.engine.scroll[0]
+            rect.y += - self.engine.scroll[1]
 
     def draw(self):
-        self.rects = []
-        for tile in self.tiles:
-            rect = pygame.Rect(tile[0] - self.offset[0], tile[1] - self.offset[1], self.tilesize, self.tilesize)
-            self.rects.append(rect) 
-            self.screen.blit(self.image, (rect.x, rect.y), (tile[2], tile[3], self.tilesize, self.tilesize))
+        for index, rect in enumerate(self.rects):
+            self.screen.blit(self.image, (rect[0], rect[1]), (self.tiles[index][0], self.tiles[index][1], self.tilesize, self.tilesize))
 
 
 class SingleImgLayer(Layer):
@@ -67,6 +67,12 @@ class SingleImgLayer(Layer):
                     dest_x = x * self.tilesize
                     dest_y = y * self.tilesize
                     self.tiles.append([dest_x, dest_y])
+    
+    def update(self):
+        super().update()
+        for rect in self.tiles:
+            rect[0] += - self.engine.scroll[0]
+            rect[1] += - self.engine.scroll[1]
 
     def draw(self):
         for tile in self.tiles:
@@ -97,15 +103,18 @@ class AnimatedLayer(AnimSprite):
         for y, row in enumerate(self.data):
             for x, column in enumerate(row):
                 if column != -1:
-                    self.tiles.append([column, x * self.tilesize, y * self.tilesize])
+                    self.tiles.append(column)
+                    self.rects.append(
+                        pygame.Rect(x * self.tilesize - self.offset[0], y * self.tilesize - self.offset[1], self.tilesize, self.tilesize))
+
+    def update(self):
+        super().update()
+        for rect in self.rects:
+            rect.x += - self.engine.scroll[0]
+            rect.y += - self.engine.scroll[1]
 
     def draw(self):
-        self.rects = []
-        for tile in self.tiles:
-            self.current_animation = tile[0]
+        for index, tile in enumerate(self.tiles):
+            self.current_animation = tile
             self.image = self.animations[self.current_animation][int(self.index % len(self.animations[self.current_animation]))]
-            
-            rect = pygame.Rect(tile[1] - self.offset[0], tile[2] - self.offset[1], self.tilesize, self.tilesize)
-            self.rects.append(rect) 
-            
-            self.screen.blit(self.image, (rect.x, rect.y))
+            self.screen.blit(self.image, (self.rects[index][0] - self.offset[0], self.rects[index][1] - self.offset[1]))
