@@ -3,6 +3,7 @@ import pygame
 from sys import exit
 from .settings import FPS, SCREEN_COLOR, WIDTH, HEIGHT
 
+
 class Window:
     def __init__(self):
         pygame.init()
@@ -14,7 +15,7 @@ class Window:
     def set_caption(self, caption):
         self.caption = caption
         pygame.display.set_caption(caption)
-    
+
     def set_icon(self, icon):
         self.icon = pygame.image.load(icon)
         pygame.display.set_icon(self.icon)
@@ -24,7 +25,7 @@ class Window:
         self.clock.tick(FPS)
 
     def fill(self):
-        self.screen.fill(SCREEN_COLOR)   
+        self.screen.fill(SCREEN_COLOR)
 
     def close(self):
         pygame.quit()

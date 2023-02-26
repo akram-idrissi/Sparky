@@ -3,6 +3,7 @@ import csv, pygame
 from .sprite import Sprite
 from .animSprite import AnimSprite
 
+
 def parse_file(filename):
     if not filename: return
     data = []
@@ -11,10 +12,10 @@ def parse_file(filename):
         for row in rows:
             temp = []
             for column in row:
-                temp.append(int(column))                        
+                temp.append(int(column))
             data.append(temp) if len(temp) > 0 else ''
     return data
-    
+
 
 class Layer(Sprite):
     def __init__(self, actor, filename, tileset, tilesize):
@@ -52,7 +53,8 @@ class Layer(Sprite):
 
     def draw(self):
         for index, rect in enumerate(self.rects):
-            self.screen.blit(self.image, (rect[0], rect[1]), (self.tiles[index][0], self.tiles[index][1], self.tilesize, self.tilesize))
+            self.screen.blit(self.image, (rect[0], rect[1]),
+                             (self.tiles[index][0], self.tiles[index][1], self.tilesize, self.tilesize))
 
 
 class SingleImgLayer(Layer):
@@ -67,7 +69,7 @@ class SingleImgLayer(Layer):
                     dest_x = x * self.tilesize
                     dest_y = y * self.tilesize
                     self.tiles.append([dest_x, dest_y])
-    
+
     def update(self):
         super().update()
         for rect in self.tiles:
@@ -82,7 +84,7 @@ class SingleImgLayer(Layer):
 class AnimatedLayer(AnimSprite):
     def __init__(self, actor, filename, frames, tilesize):
         super().__init__(actor)
-        
+
         self.tiles = []
         self.rects = []
         self.tilesize = tilesize
@@ -105,7 +107,8 @@ class AnimatedLayer(AnimSprite):
                 if column != -1:
                     self.tiles.append(column)
                     self.rects.append(
-                        pygame.Rect(x * self.tilesize - self.offset[0], y * self.tilesize - self.offset[1], self.tilesize, self.tilesize))
+                        pygame.Rect(x * self.tilesize - self.offset[0], y * self.tilesize - self.offset[1],
+                                    self.tilesize, self.tilesize))
 
     def update(self):
         super().update()
@@ -116,5 +119,6 @@ class AnimatedLayer(AnimSprite):
     def draw(self):
         for index, tile in enumerate(self.tiles):
             self.current_animation = tile
-            self.image = self.animations[self.current_animation][int(self.index % len(self.animations[self.current_animation]))]
+            self.image = self.animations[self.current_animation][
+                int(self.index % len(self.animations[self.current_animation]))]
             self.screen.blit(self.image, (self.rects[index][0] - self.offset[0], self.rects[index][1] - self.offset[1]))

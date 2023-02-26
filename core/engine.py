@@ -5,7 +5,7 @@ class Engine:
     def __init__(self, window):
         self.running = True
         self.window = window
-        
+
         self.layers = {}
         self.sprites = []
         self.actors = set()
@@ -19,7 +19,7 @@ class Engine:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.window.close()
-            
+
         for actor in self.actors:
             actor.process_input(events)
 
@@ -34,13 +34,14 @@ class Engine:
         self.window.update()
 
     def add_layer(self, name, layer):
-        if name not in self.layers.keys() : self.layers[name] = layer
+        if name not in self.layers.keys():
+            self.layers[name] = layer
 
     def add_actor(self, actor):
         self.actors.add(actor)
 
     def remove_actor(self, actor):
-        self.actors.remove(actor) if len(self.actors) > 0  else ''
+        self.actors.remove(actor) if len(self.actors) > 0 else ''
 
     def add_sprite(self, sprite):
         self.sprites.append(sprite)

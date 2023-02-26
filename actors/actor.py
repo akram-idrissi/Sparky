@@ -1,5 +1,6 @@
 import pygame
 
+
 class Actor:
     """
     This is a base Actor class with a handful of overridable methods, each actor also has
@@ -17,6 +18,7 @@ class Actor:
         velocity: a vector that updates the position each frame.
         acceleration: a vector that updates the velocity each frame.
     """
+
     def __init__(self, engine):
         self.components = set()
         self.engine = engine
@@ -42,7 +44,7 @@ class Actor:
         """ An overridable method for updating actor behavior """
         self.velocity += self.acceleration
         self.position += self.velocity
-    
+
     def process_input(self, events):
         """ 
         An overridable method that handles actor input

@@ -1,7 +1,8 @@
 from actors.actor import Actor
 from components.input import Input
 from components.sprite import Sprite
-from core.collision import * 
+from core.collision import *
+
 
 class Player(Actor):
     def __init__(self, game):
@@ -30,31 +31,31 @@ class Player(Actor):
         if self.input.keydown(events, 'space'):
             if self.timer < 6:
                 self.acceleration.y = -5
-            
+
     def collision(self):
         rect = self.sprite.rect
         tiles = self.engine.layers['terrain'].rects
 
         self.position.x += self.velocity.x
         rect.x = self.position.x
-        collisions = collidedtiles(rect, tiles) 
+        collisions = collidedtiles(rect, tiles)
         pos, _ = horizontal_movement(rect, self.velocity, collisions)
         self.position.x = pos.x
 
         self.position.y += self.velocity.y
         rect.y = self.position.y
-        collisions = collidedtiles(rect, tiles) 
+        collisions = collidedtiles(rect, tiles)
         pos, sides = vertical_movement(rect, self.velocity, collisions)
         if sides['bottom']:
             self.acceleration.y = 0
             self.timer = 0
         else:
-            self.timer += 1 
+            self.timer += 1
         self.position.y = pos.y
 
-    def update_actor(self): 
+    def update_actor(self):
         self.engine.scroll[0] += (self.velocity.x - self.engine.scroll[0])
         super().update_actor()
         self.acceleration.y += 0.2
-        if self.acceleration.y > 3: self.acceleration.y = 3 
+        if self.acceleration.y > 3: self.acceleration.y = 3
         self.collision()

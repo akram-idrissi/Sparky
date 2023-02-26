@@ -1,5 +1,6 @@
 from .sprite import Sprite
 
+
 class AnimSprite(Sprite):
     """
     Sprite subclass responsible for rendering animations.
@@ -10,6 +11,7 @@ class AnimSprite(Sprite):
         frames: has frames of a specific animation.
         index: keeps track of which animation should be drawn.
     """
+
     def __init__(self, actor):
         super().__init__(actor)
 
@@ -20,7 +22,7 @@ class AnimSprite(Sprite):
 
     def update(self):
         super().update()
-        if not self.current_animation: return 
+        if not self.current_animation: return
         self.frames = self.animations[self.current_animation]
         self.index %= len(self.frames)
         self.image = self.frames[int(self.index)]
@@ -29,12 +31,12 @@ class AnimSprite(Sprite):
 
     def add_frames(self, name, frames):
         """ Adds more frames to an animation """
-        if(name and len(frames) > 0 and name in self.animations.keys()):
+        if (name and len(frames) > 0 and name in self.animations.keys()):
             self.animations[name] += frames
- 
+
     def add_animation(self, name, frames):
         """ Adds a new animation """
-        if(name and len(frames) > 0 and name not in self.animations.keys()):
+        if (name and len(frames) > 0 and name not in self.animations.keys()):
             self.animations[name] = frames
             self.current_animation = name
 
@@ -62,9 +64,10 @@ class SingleImgAnimation(Sprite):
         length = len(self.frames)
         self.index = self.index % length
         self.frame = self.frames[int(self.index)]
-        self.rect.w = self.frame[2]; self.rect.h = self.frame[3]
+        self.rect.w = self.frame[2]
+        self.rect.h = self.frame[3]
         self.index += 0.1
-        
+
     def draw(self):
-        if not self.image or not self.frame: return 
+        if not self.image or not self.frame: return
         self.screen.blit(self.image, self.actor.position, (self.frame[0], self.frame[1], self.frame[2], self.frame[3]))

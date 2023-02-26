@@ -1,5 +1,3 @@
-import pygame
-
 def right_collision(rect1, rect2):
     return rect1.right >= rect2.left
 
@@ -30,7 +28,7 @@ def horizontal_movement(rect, velocity, tiles):
         elif velocity.x < 0:
             rect.left = tile.right
             collisions['left'] = True
-    
+
     return rect, collisions
 
 
@@ -44,5 +42,5 @@ def vertical_movement(rect, velocity, tiles):
         elif velocity.y < 0:
             rect.top = tile.bottom
             collisions['top'] = True
-    
+
     return rect, collisions

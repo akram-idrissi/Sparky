@@ -1,23 +1,24 @@
 import pygame
 from random import choice
 
-class Sound():
+
+class Sound:
     def __init__(self):
         pygame.mixer.pre_init(44100, -16, 2, 512)
         self.sounds = {}
         self.current_sound = None
         self.current_sound_on = None
-        
+
     def load_sound(self, path):
         return pygame.mixer.Sound(path) if path else None
 
     def add_sound(self, name, sounds):
-        if name and len(sounds) > 0: 
+        if name and len(sounds) > 0:
             self.sounds[name] = [self.load_sound(sound) for sound in sounds]
             self.current_sound = name
 
     def append_to_sound(self, name, sounds):
-        if name and len(sounds) > 0: 
+        if name and len(sounds) > 0:
             self.sounds[name] += [self.load_sound(sound) for sound in sounds]
 
     def play(self):
@@ -27,7 +28,7 @@ class Sound():
     def stop(self):
         self.current_sound_on.stop()
 
-    def fade_out(self   , time):
+    def fade_out(self, time):
         self.current_sound_on.fade_out(time)
 
     def close(self):
@@ -37,7 +38,7 @@ class Sound():
     def set_sound(self, name, sounds):
         if name in self.sounds.keys and len(sounds) > 0:
             self.sounds[name] = [self.load_sound(sound) for sound in sounds]
-    
+
     def get_sounds(self, name):
         self.sounds[name] if name in self.sounds.keys else None
 

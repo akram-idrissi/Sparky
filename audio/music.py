@@ -1,7 +1,7 @@
 import pygame
 
 
-class Music():
+class Music:
     def __init__(self):
         pygame.mixer.pre_init(44100, -16, 2, 512)
         

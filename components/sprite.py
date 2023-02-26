@@ -1,6 +1,7 @@
 import pygame
 from .component import Component
 
+
 class Sprite(Component):
     """
     Simple base class for visible game objects.
@@ -22,6 +23,7 @@ class Sprite(Component):
         engine: a reference to the engine object.
         screen: a reference to the display surface.
     """
+
     def __init__(self, actor):
         super().__init__(actor)
 
@@ -40,9 +42,9 @@ class Sprite(Component):
 
     def scale(self, x, y):
         self.image = pygame.transform.scale(self.image, (x, y))
-    
+
     def flip(self, x=None, y=None):
-        if not x and not y: 
+        if not x and not y:
             self.image = pygame.transform.flip(self.image, self.flip_axis[0], self.flip_axis[1])
 
     def update(self):

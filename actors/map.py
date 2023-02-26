@@ -1,5 +1,6 @@
 from .actor import Actor
 
+
 class Map(Actor):
     def __init__(self, actor):
         super().__init__(actor)
