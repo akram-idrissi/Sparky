@@ -1,7 +1,8 @@
-import csv, pygame
+import csv
+import pygame
 
-from .sprite import Sprite
 from .animSprite import AnimSprite
+from .sprite import Sprite
 
 
 def parse_file(filename):
@@ -47,9 +48,9 @@ class Layer(Sprite):
 
     def update(self):
         super().update()
-        for rect in self.rects:
-            rect.x += - self.engine.scroll[0]
-            rect.y += - self.engine.scroll[1]
+        # for rect in self.rects:
+        #     rect.x += - self.engine.scroll[0]
+        #     rect.y += - self.engine.scroll[1]
 
     def draw(self):
         for index, rect in enumerate(self.rects):
@@ -72,9 +73,9 @@ class SingleImgLayer(Layer):
 
     def update(self):
         super().update()
-        for rect in self.tiles:
-            rect[0] += - self.engine.scroll[0]
-            rect[1] += - self.engine.scroll[1]
+        # for rect in self.tiles:
+        #     rect[0] += - self.engine.scroll[0]
+        #     rect[1] += - self.engine.scroll[1]
 
     def draw(self):
         for tile in self.tiles:
@@ -112,9 +113,9 @@ class AnimatedLayer(AnimSprite):
 
     def update(self):
         super().update()
-        for rect in self.rects:
-            rect.x += - self.engine.scroll[0]
-            rect.y += - self.engine.scroll[1]
+        # for rect in self.rects:
+        #     rect.x += - self.engine.scroll[0]
+        #     rect.y += - self.engine.scroll[1]
 
     def draw(self):
         for index, tile in enumerate(self.tiles):
