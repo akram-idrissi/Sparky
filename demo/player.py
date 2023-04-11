@@ -2,6 +2,7 @@ from actors.actor import Actor
 from components.input import Input
 from components.sprite import Sprite
 from core.collision import *
+from core.settings import WIDTH, HEIGHT
 
 
 class Player(Actor):
@@ -31,6 +32,17 @@ class Player(Actor):
         if self.input.keydown(events, 'space'):
             if self.timer < 6:
                 self.acceleration.y = -5
+
+    def apply_camera(self):
+        if self.position.x >= WIDTH - 200:
+            self.engine.scroll[0] = -5
+        elif self.position.x <= 200:
+            self.engine.scroll[0] = 5
+
+        if self.position.y >= HEIGHT - 200:
+            self.engine.scroll[1] = -5
+        elif self.position.y <= 200:
+            self.engine.scroll[1] = 5
 
     def collision(self):
         rect = self.sprite.rect
